@@ -1,5 +1,5 @@
 <?php
-
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 $pqr1_ip = "127.0.0.1";
 $par2_name = "root";
 $par3_p = "";
