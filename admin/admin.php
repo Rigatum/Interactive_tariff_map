@@ -14,7 +14,7 @@ if($id > 0){
     header('Location:../admin.php');
 }
 else
-    header('Location:../login.php');
+    header('Location:../login/login.php');
     die();
 ?>
 

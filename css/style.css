@@ -30,14 +30,11 @@ path
     margin: 15px;
     border: 1px solid #900;
 }
-/* Стили для подложки */
 
 .overlay {
    
-   /* Скрываем подложку  */
    opacity: 0;
    visibility: hidden;
-   
    position: fixed;
    top: 0;
    left: 0;
@@ -48,29 +45,20 @@ path
    transition: .3s all;
 }
 
-
-/* Стили для модальных окон */
-
 .modal {
    
-   /* Скрываем окна  */
    opacity: 0;
    visibility: hidden;
-   
-   
-   /*  Установливаем ширину окна  */
    height: 600px;
    width: 100%;
    max-width: 1000px;
    
-   /*  Центрируем и задаем z-index */
    position: fixed;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
-   z-index: 30; /* Должен быть выше чем у подложки*/
+   z-index: 30; 
    
-   /*  Побочные стили   */
    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2); 
    text-align: center;
    padding: 30px;
@@ -79,17 +67,11 @@ path
    transition: 0.3s all;
 }
 
-
-/* Стили для активных классов подложки и окна */
-
 .modal.active,
 .overlay.active{
    opacity: 1;
    visibility: visible;
 }
-
-
-/* Стили для кнопки закрытия */
 
 .modal__cross {
    width: 15px;
@@ -101,11 +83,8 @@ path
    cursor: pointer;
 }
 
-
-/* Стили для кнопок */
-
 a {
-   padding: 20px;
+   padding: 10px;
    display: inline-block;
    text-decoration: none;
    background-color: #414b52;
@@ -129,4 +108,14 @@ select {
     position: absolute;
     right: 1174px;
     top: 220px;
+}
+
+.btn{
+    float: right;
+}
+
+.btn-login{
+    position: absolute;
+    top: 8px;
+    left: 1766px;
 }

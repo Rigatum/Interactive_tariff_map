@@ -12,7 +12,7 @@
 </head>
 <body>
     <?php if (!empty($_SESSION['login'])) :?>
-    <a href="/logout.php">Выйти</a>
+    <a href="/logout.php" class = "btn">Выйти</a>
     <div class="select_block">
         <label for="tariff-select">Выберите тариф:</label>
 

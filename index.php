@@ -10,6 +10,7 @@
 	<meta name="keywords" content=" ">
 </head>
 <body>
+    <a href="login/login.php" class = "btn">Войти</a>
     <div class="select_block">
         <label for="tariff-select">Выберите тариф:</label>
 
