@@ -11,7 +11,8 @@
 	<meta name="keywords" content=" ">
 </head>
 <body>
-    <h2>Админка</h2>
+    <?php if (!empty($_SESSION['login'])) :?>
+    <a href="/logout.php">Выйти</a>
     <div class="select_block">
         <label for="tariff-select">Выберите тариф:</label>
 
@@ -427,11 +428,16 @@
                 echo "Выберите вид тарифа";
             }
         ?>
+        <?php else:
+            header('Location:../index.php');
+        ?>
+        <?php endif ?>
      </div>
      <!-- Подложка под модальным окном -->
      <div class="overlay js-overlay-modal"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="js/main.js"></script>
+
 </body>
 </html>
 

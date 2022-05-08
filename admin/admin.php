@@ -15,6 +15,7 @@ if($id > 0){
 }
 else
     header('Location:../login.php');
+    die();
 ?>
 
 
