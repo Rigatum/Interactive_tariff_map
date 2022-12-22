@@ -1,6 +1,5 @@
 !function(e){"function"!=typeof e.matches&&(e.matches=e.msMatchesSelector||e.mozMatchesSelector||e.webkitMatchesSelector||function(e){for(var t=this,o=(t.document||t.ownerDocument).querySelectorAll(e),n=0;o[n]&&o[n]!==t;)++n;return Boolean(o[n])}),"function"!=typeof e.closest&&(e.closest=function(e){for(var t=this;t&&1===t.nodeType;){if(t.matches(e))return t;t=t.parentNode}return null})}(window.Element.prototype);
 
-
 document.addEventListener('DOMContentLoaded', function() {
 
    /* Записываем в переменные массив элементов-кнопок и подложку.
@@ -24,13 +23,18 @@ document.addEventListener('DOMContentLoaded', function() {
          /* При каждом клике на кнопку мы будем забирать содержимое атрибута data-modal
             и будем искать модальное окно с таким же атрибутом. */
          var modalId = this.getAttribute('data-modal'),
-             modalElem = document.querySelector('.modal[data-modal="' + modalId + '"]');
+         modalElem = document.querySelector('.modal[data-modal="' + modalId + '"]');
 
+             if(text != ": Выберите тариф или услугу")
+               {
+                  $('.modal[data-modal="' + modalId + '"]').addClass('active');
+                  $('.modal[data-modal!="' + modalId + '"]').removeClass('active');
+            }
+            else
+            {
+               alert("Выберите тариф или услугу");
+            }
 
-         /* После того как нашли нужное модальное окно, добавим классы
-            подложке и окну чтобы показать их. */
-         modalElem.classList.add('active');
-         overlay.classList.add('active');
       }); // end click
 
    }); // end foreach
@@ -64,5 +68,4 @@ document.addEventListener('DOMContentLoaded', function() {
         this.classList.remove('active');
     });
 
-}); // end ready
-
+});

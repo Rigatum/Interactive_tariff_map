@@ -4,30 +4,411 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive map</title>
+    <title>Интерактивная карта тарифов ЖКХ</title>
     <link href = "css/style.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<meta name="keywords" content=" ">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="import" href="/color-map.html">
+    <link rel="shortcut icon" href="/images/logo.ico" type="image/x-icon">
 </head>
 <body>
-    <a href="login/login.php" class = "btn">Войти</a>
-    <div class="select_block">
-        <label for="tariff-select">Выберите тариф:</label>
 
-        <form name="tariff-select" method="post" action="" enctype="utf-8">
-            <select name="id_tariff[]" onchange="if (this.selectedIndex) this.form.submit ()">
-                <option>Выберите вид тарифа</option>
-                <option value="1">Питьевая вода</option>
-                <option value="2">Водоотведение</option>
-                <option value="3">Горячее водоснабжение</option>
-                <option value="4">Тепловая энергия</option>
-                <option value="5">Электроэнергия</option>
-                <option value="6">Вывоз мусора</option>
-                <option value="7">Газ</option>
-            </select>
-        </form>
+<?php
+    include "database.php";
+    $result = mysqli_query ($induction, "SELECT * FROM `map_color`");
+    $myrow = mysqli_fetch_array ($result);
+    $color=$myrow ['color']; 
+    switch ($color){
+        case 0:
+           echo "<style type='text/css'>
+                   path{
+                       fill: teal;
+                   }
+                 </style>";
+                 break;
+        case 1:
+           echo "<style type='text/css'>
+                   path{
+                       fill: black;
+                   }
+               </style>";
+                break;
+        case 2:
+           echo "<style type='text/css'>
+                   path{
+                       fill: blue;
+                   }
+                   </style>";
+                   break;
+        case 3:
+           echo "<style type='text/css'>
+               path{
+                   fill: red;
+               }
+               </style>";
+               break;
+        case 4:
+            echo "<style type='text/css'>
+                    path{
+                        fill: green;
+                    }
+                </style>";
+                break;
+        case 5:
+            echo "<style type='text/css'>
+                    path{
+                        fill: yellow;
+                    }
+                    </style>";
+                    break;
+        case 6:
+            echo "<style type='text/css'>
+                path{
+                    fill: orange;
+                }
+                </style>";
+                break;
+        case 7:
+            echo "<style type='text/css'>
+                    path{
+                        fill: purple;
+                    }
+                </style>";
+                 break;
+        case 8:
+            echo "<style type='text/css'>
+                    path{
+                        fill: brown;
+                    }
+                    </style>";
+                    break;
+        case 9:
+            echo "<style type='text/css'>
+                path{
+                    fill: white;
+                }
+                </style>";
+                break;   
+        case 10:
+            echo "<style type='text/css'>
+                    path{
+                        fill: gray;
+                    }
+                </style>";
+                break;
+        case 11:
+            echo "<style type='text/css'>
+                    path{
+                        fill: maroon;
+                    }
+                    </style>";
+                    break;
+        case 12:
+            echo "<style type='text/css'>
+                path{
+                    fill: teal;
+                }
+                </style>";
+                break;
+        case 13:
+            echo "<style type='text/css'>
+                    path{
+                        fill: lime;
+                    }
+                </style>";
+                 break;
+        case 14:
+            echo "<style type='text/css'>
+                    path{
+                        fill: olive;
+                    }
+                    </style>";
+                    break;
+        case 15:
+            echo "<style type='text/css'>
+                path{
+                    fill: silver;
+                }
+                </style>";
+                break;
+        case 16:
+            echo "<style type='text/css'>
+                    path{
+                        fill: aqua;
+                    }
+                </style>";
+                 break;                                           
+    }
+?>
+<?php
+    include "database.php";
+    $result = mysqli_query ($induction, "SELECT * FROM `town_color`");
+    $myrow = mysqli_fetch_array ($result);
+    $color=$myrow ['color']; 
+    switch ($color){
+        case 0:
+           echo "<style type='text/css'>
+           circle{
+                fill: teal;
+                stroke: teal;
+            }
+            circle:hover{
+                fill: teal;
+                stroke: teal;
+            }
+            </style>";
+                 break;
+        case 1:
+            echo "<style type='text/css'>
+            circle{
+                 fill: black;
+                 stroke: black;
+             }
+             circle:hover{
+                 fill: black;
+                 stroke: black;
+             }
+             </style>";
+                  break;
+        case 2:
+            echo "<style type='text/css'>
+            circle{
+                 fill: blue;
+                 stroke: blue;
+             }
+             circle:hover{
+                 fill: blue;
+                 stroke: blue;
+             }
+             </style>";
+                  break;
+        case 3:
+            echo "<style type='text/css'>
+            circle{
+                 fill: red;
+                 stroke: red;
+             }
+             circle:hover{
+                 fill: red;
+                 stroke: red;
+             }
+             </style>";
+                  break;
+        case 4:
+            echo "<style type='text/css'>
+            circle{
+                 fill: green;
+                 stroke: green;
+             }
+             circle:hover{
+                 fill: green;
+                 stroke: green;
+             }
+             </style>";
+                  break;
+        case 5:
+            echo "<style type='text/css'>
+            circle{
+                 fill: yellow;
+                 stroke: yellow;
+             }
+             circle:hover{
+                 fill: yellow;
+                 stroke: yellow;
+             }
+             </style>";
+                  break;
+        case 6:
+            echo "<style type='text/css'>
+            circle{
+                 fill: orange;
+                 stroke: orange;
+             }
+             circle:hover{
+                 fill: orange;
+                 stroke: orange;
+             }
+             </style>";
+                  break;
+        case 7:
+            echo "<style type='text/css'>
+            circle{
+                 fill: purple;
+                 stroke: purple;
+             }
+             circle:hover{
+                 fill: purple;
+                 stroke: purple;
+             }
+             </style>";
+                  break;
+        case 8:
+            echo "<style type='text/css'>
+            circle{
+                 fill: brown;
+                 stroke: brown;
+             }
+             circle:hover{
+                 fill: brown;
+                 stroke: brown;
+             }
+             </style>";
+                  break;
+        case 9:
+            echo "<style type='text/css'>
+            circle{
+                 fill: white;
+                 stroke: white;
+             }
+             circle:hover{
+                 fill: white;
+                 stroke: white;
+             }
+             </style>";
+                  break;  
+        case 10:
+            echo "<style type='text/css'>
+            circle{
+                 fill: gray;
+                 stroke: gray;
+             }
+             circle:hover{
+                 fill: gray;
+                 stroke: gray;
+             }
+             </style>";
+                  break;
+        case 11:
+            echo "<style type='text/css'>
+            circle{
+                 fill: maroon;
+                 stroke: maroon;
+             }
+             circle:hover{
+                 fill: maroon;
+                 stroke: maroon;
+             }
+             </style>";
+                  break;
+        case 12:
+            echo "<style type='text/css'>
+            circle{
+                 fill: teal;
+                 stroke: teal;
+             }
+             circle:hover{
+                 fill: teal;
+                 stroke: teal;
+             }
+             </style>";
+                  break;
+        case 13:
+            echo "<style type='text/css'>
+            circle{
+                 fill: lime;
+                 stroke: lime;
+             }
+             circle:hover{
+                 fill: lime;
+                 stroke: lime;
+             }
+             </style>";
+                  break;
+        case 14:
+            echo "<style type='text/css'>
+            circle{
+                 fill: olive;
+                 stroke: olive;
+             }
+             circle:hover{
+                 fill: olive;
+                 stroke: olive;
+             }
+             </style>";
+                  break;
+        case 15:
+            echo "<style type='text/css'>
+            circle{
+                 fill: silver;
+                 stroke: silver;
+             }
+             circle:hover{
+                 fill: silver;
+                 stroke: silver;
+             }
+             </style>";
+                  break;
+        case 16:
+            echo "<style type='text/css'>
+            circle{
+                 fill: aqua;
+                 stroke: aqua;
+             }
+             circle:hover{
+                 fill: aqua;
+                 stroke: aqua;
+             }
+             </style>";
+                  break;                                          
+    }
+?>
+<img src="images/goskom.jpg" class="goskom goskom2" alt="">
+<a href="login/login.php" class = "btnoth">Войти</a>
+<?php
+    include "database.php";
+    $sql = "SELECT title FROM tariff_title";
+
+    $result = mysqli_query($induction, $sql);
+
+    while ($tariff_title = mysqli_fetch_assoc($result))
+    {
+        $title = $tariff_title['title'];
+    }
+?>
+    <h1 class="tt"><?php echo $title;?></h1>
+    <div class="select_block">
+        <label for="tariff-select">Выберите тариф<br>или услугу:</label>
+            <form id="tariff-select" method="get" action="" enctype="utf-8">
+                <?php
+                    include "database.php";
+                    $result = mysqli_query ($induction, "SELECT * FROM `tariff`");
+                    $myrow = mysqli_fetch_array ($result);
+                    echo '<select name="id_tariff[] test" id="test" onChange="">';
+                    echo "<option selected>Выберите тариф или услугу</option>";
+                    do
+                    {
+                        $tariff=$myrow ["tariff_name"];
+                        $id = $myrow ["id"];
+                        printf ("<option value = '%s'>%s</option>", $id, $tariff);
+                    }
+                    while($myrow = mysqli_fetch_array($result));
+                    $id++;
+                    echo "<option value='$id'>Все тарифы и услуги</option>";
+                    echo "</select>";
+                ?>
+            </form>
     </div>
+    <script>
+        document.getElementById("test").onchange = function() 
+        {
+            sessionStorage.setItem('test', document.getElementById("test").value);
+            document.getElementById('tariff-select').submit();
+        }
+        if (sessionStorage.getItem("test")) 
+        {
+            const select = document.querySelector('#test').getElementsByTagName('option');
+            for (let i = 0; i < select.length; i++) {
+                    if (select[i].value === sessionStorage.getItem('test')) select[i].selected = true;
+            }
+        }         
+    </script>
+
     <div class = "map">
+        <img src="images/logo.jpg" class="logo2" alt="">
         <svg viewBox = "0 0 429 724">
             <g>
                 <title> Таштыпский район
@@ -38,7 +419,6 @@
                 <title> Бейский район
                 </title>
                     <path class="js-open-modal" data-modal="8" d = "m 302.80439,479.60731 c -0.93592,-1.55253 -2.31856,-19.63993 -1.81154,-23.69801 0.63871,-5.11203 -0.48977,-8.10505 -3.05591,-8.10505 -0.92263,0 -1.67751,-0.3842 -1.67751,-0.85378 0,-0.46957 -1.92099,-0.85377 -4.26886,-0.85377 -2.34788,0 -4.26887,0.35142 -4.26887,0.78093 0,0.42951 -2.97754,1.01373 -6.61675,1.29829 -8.4292,0.65907 -20.70401,3.03413 -20.70401,4.00604 0,0.40971 -0.57629,0.74493 -1.28066,0.74493 -0.79685,0 -1.28066,-0.80634 -1.28066,-2.13444 0,-1.17394 -0.3842,-2.13443 -0.85377,-2.13443 -0.46958,0 -0.85377,-0.78191 -0.85377,-1.73758 0,-0.95568 -0.58914,-2.63672 -1.30918,-3.73566 -1.09249,-1.66733 -1.15469,-2.82823 -0.37582,-7.01358 0.51336,-2.75855 1.14452,-6.26418 1.40259,-7.7903 0.25807,-1.52612 0.81139,-2.77477 1.22959,-2.77477 0.4182,0 0.76036,-1.12537 0.76036,-2.50083 0,-2.01471 0.75514,-3.01047 3.88479,-5.12264 2.13663,-1.442 4.76647,-2.62181 5.84409,-2.62181 2.41128,0 4.45605,-2.15827 5.25769,-5.54953 0.89727,-3.7958 3.64339,-6.4033 6.74374,-6.4033 2.53267,0 5.59045,-2.34026 5.59045,-4.27863 0,-0.46421 0.3842,-0.84401 0.85377,-0.84401 0.46958,0 0.85377,-1.72889 0.85377,-3.84198 0,-2.11309 0.32253,-3.84198 0.71673,-3.84198 0.39421,0 1.15437,-0.9605 1.68925,-2.13444 0.53488,-1.17394 1.57665,-2.13443 2.31504,-2.13443 0.75545,0 1.90024,-1.40006 2.6179,-3.20165 2.23637,-5.61415 3.16181,-7.04364 4.55999,-7.04364 0.7508,0 2.782,-0.96281 4.51377,-2.13958 2.39944,-1.63046 3.27093,-2.90019 3.66247,-5.33608 1.025,-6.37682 1.18115,-6.66362 4.22795,-7.76536 1.65971,-0.60016 3.01766,-1.50252 3.01766,-2.00525 0,-0.50273 0.86444,-1.7265 1.92099,-2.7195 1.05654,-0.993 2.393,-2.862 2.9699,-4.15333 0.57691,-1.29133 1.44135,-2.34788 1.92099,-2.34788 0.47965,0 0.87208,-0.96049 0.87208,-2.13443 0,-2.9773 2.06839,-2.74098 6.31537,0.72155 2.23078,1.81873 4.78679,3.02497 7.03774,3.32127 1.97359,0.25978 4.34535,1.27592 5.37018,2.30075 2.42568,2.42568 5.36219,3.47483 9.7259,3.47483 3.88976,0 9.13296,-1.25777 9.91059,-2.37742 0.92752,-1.33544 6.47174,-5.11091 8.33582,-5.67648 1.72241,-0.52259 1.89349,-0.24371 2.13444,3.47938 0.24281,3.75183 0.46067,4.09868 2.98246,4.74825 1.62145,0.41765 2.94915,1.42112 3.28646,2.48388 0.67682,2.13248 -0.14582,3.07535 -3.01877,3.45995 -1.73643,0.23246 -2.13443,0.76115 -2.13443,2.8353 0,2.43955 0.20261,2.57863 4.69575,3.22315 2.58267,0.37047 4.82382,1.04811 4.98034,1.50586 0.15653,0.45775 1.30913,0.83816 2.56132,0.84535 3.90917,0.0224 4.48979,0.89588 3.13124,4.71036 -0.66354,1.86308 -1.22331,4.0098 -1.24392,4.77048 -0.0272,1.00172 -1.11728,1.50478 -3.95369,1.82449 -2.15394,0.24278 -4.25882,0.784 -4.67754,1.20272 -0.41872,0.41871 -0.86556,5.6742 -0.99297,11.67885 l -0.23167,10.91755 2.66447,2.29147 c 3.48841,3.00008 3.9916,4.72959 2.44969,8.41988 -0.69969,1.67462 -1.27217,3.76623 -1.27217,4.64803 0,0.88181 -0.3842,1.60328 -0.85378,1.60328 -0.46957,0 -0.85377,0.88707 -0.85377,1.97126 0,1.08419 -0.56408,2.71703 -1.25351,3.62853 -0.68942,0.91151 -1.26572,2.64475 -1.28066,3.85163 -0.0181,1.45991 -1.01495,2.98191 -2.97849,4.54744 -1.62325,1.2942 -3.21182,3.18823 -3.53017,4.20896 -0.31836,1.02073 -0.85963,2.04796 -1.20284,2.28275 -1.61906,1.10761 -4.26848,7.97911 -4.26848,11.0707 0,2.62098 -0.51512,3.90264 -2.13444,5.31061 -1.86492,1.62153 -2.13786,2.56411 -2.16158,7.46488 -0.016,3.3046 -0.49312,6.22284 -1.16135,7.1031 -1.20843,1.59192 -4.78792,2.07063 -4.78792,0.64033 0,-0.47432 -2.27673,-0.85377 -5.12264,-0.85377 -2.81745,0 -5.12264,0.33759 -5.12264,0.75019 0,0.41261 -1.05654,1.13644 -2.34788,1.60853 -6.41088,2.34369 -9.86403,2.95041 -14.77179,2.59542 -4.4652,-0.32298 -5.65667,-0.75874 -7.30072,-2.67006 -1.33063,-1.54695 -2.80451,-2.28408 -4.56696,-2.28408 -1.43125,0 -2.60227,0.3454 -2.60227,0.76757 0,0.78962 -6.27106,4.35507 -7.65987,4.35507 -0.4274,0 -0.9508,-0.28815 -1.1631,-0.64033 z " description-data="Бейский район"/>
-            
             </g>
             <g>
                 <title> Аскизский район
@@ -99,338 +479,697 @@
         <div class="description"></div>
         <img src = "images/Khakassia_NN.png" alt = "{Хакасия}" />
     </div>
-
+    
     <div class="modal" data-modal="11">
         <!--   Svg иконка для закрытия окна  -->
         <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg"               viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
-        <p class="modal__title">Тарифы Таштыпского района</p>
-        <?php
-            include "database.php";
         
-            if($_REQUEST['id_tariff']) {
-                foreach($_POST['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 11 AND id_tariff = $id_tariff";
-                }}
+        <div class="combo-title">
+            <p class="modal__title">Таштыпский район</p> 
+            <p class="modal__title tariff__title"></p>
+        </div>
 
-            if($id_tariff != 0){
-
-                $result = mysqli_query($induction, $sql);
-
-                while ($tariff = mysqli_fetch_assoc($result))
+        <div class = "modal__text">
+            <?php
+                include "database.php";
+            
+                if($_REQUEST['id_tariff']) {
+                    foreach($_GET['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 11 AND id_tariff = $id_tariff";
+                    }}
+                
+                if($id_tariff == $id)
                 {
-                    echo $tariff['tariff_description'];
+                    $sql = "SELECT tariff_name FROM tariff 
+                    INNER JOIN svyaz
+                    ON svyaz.id_tariff = tariff.id
+                    and svyaz.id_locality = 11;";
+                    
+                    $sql2 = "SELECT tariff_description FROM tariff 
+                    INNER JOIN svyaz
+                    ON svyaz.id_tariff = tariff.id
+                    and svyaz.id_locality = 11;";
+
+                    $result = mysqli_query($induction, $sql);
+                    $result2 = mysqli_query($induction, $sql2);
+
+                    while ($tariff = mysqli_fetch_assoc($result) and $tariff_desc = mysqli_fetch_assoc($result2))
+                    {
+                        echo '<p class="tariff_name_all">'.$tariff['tariff_name'].'<p>';
+                        echo nl2br( $tariff_desc['tariff_description'] );
+                    }
                 }
-            }
-            else{
-                echo "Выберите вид тарифа";
-            }
-        ?>
+                elseif($id_tariff != 0){
+                    $result = mysqli_query($induction, $sql);
+                    while ($tariff = mysqli_fetch_assoc($result))
+                    {
+                        echo nl2br( $tariff['tariff_description'] );
+                    }
+                }
+                else{
+                    echo "Выберите вид тарифа";
+                }
+            ?>
+        </div>
      </div>
      
      <div class="modal" data-modal="8">
         <!--   Svg иконка для закрытия окна  -->
         <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg"               viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
-        <p class="modal__title">Тарифы Бейского района</p>
-        <?php
-            include "database.php";
         
-            if($_REQUEST['id_tariff']) {
-                foreach($_POST['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 8 AND id_tariff = $id_tariff";
-                }}
+        <div class="combo-title">
+            <p class="modal__title">Бейский район</p> 
+            <p class="modal__title tariff__title"></p>
+        </div>
 
-            if($id_tariff != 0){
+        <div class = "modal__text">
+            <?php
+                include "database.php";
+            
+                if($_REQUEST['id_tariff']) {
+                    foreach($_GET['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 8 AND id_tariff = $id_tariff";
+                    }}
 
-                $result = mysqli_query($induction, $sql);
+                    if($id_tariff == $id)
+                    {
+                        $sql = "SELECT tariff_name FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 8;";
+                        
+                        $sql2 = "SELECT tariff_description FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 8;";
+    
+                        $result = mysqli_query($induction, $sql);
+                        $result2 = mysqli_query($induction, $sql2);
+    
+                        while ($tariff = mysqli_fetch_assoc($result) and $tariff_desc = mysqli_fetch_assoc($result2))
+                        {
+                            echo '<p class="tariff_name_all">'.$tariff['tariff_name'].'<p>';
+                            echo nl2br( $tariff_desc['tariff_description'] );
+                        }
+                    }
 
-                while ($tariff = mysqli_fetch_assoc($result))
-                {
-                    echo $tariff['tariff_description'];
+                elseif($id_tariff != 0){
+
+                    $result = mysqli_query($induction, $sql);
+
+                    while ($tariff = mysqli_fetch_assoc($result))
+                    {
+                        echo nl2br( $tariff['tariff_description'] );
+                    }
                 }
-            }
-            else{
-                echo "Выберите вид тарифа";
-            }
-        ?>
+                else{
+                    echo "Выберите вид тарифа";
+                }
+            ?>
+        </div>
      </div>
      <div class="modal" data-modal="7">
         <!--   Svg иконка для закрытия окна  -->
         <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg"               viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
-        <p class="modal__title">Тарифы Аскизского района</p>
-        <?php
-            include "database.php";
-        
-            if($_REQUEST['id_tariff']) {
-                foreach($_POST['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 7 AND id_tariff = $id_tariff";
-                }}
+        <div class="combo-title">
+            <p class="modal__title">Аскизский район</p> 
+            <p class="modal__title tariff__title"></p>
+        </div>
+        <div class = "modal__text">
+            <?php
+                include "database.php";
+            
+                if($_REQUEST['id_tariff']) {
+                    foreach($_GET['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 7 AND id_tariff = $id_tariff";
+                    }}
 
-            if($id_tariff != 0){
+                    if($id_tariff == $id)
+                    {
+                        $sql = "SELECT tariff_name FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 7;";
+                        
+                        $sql2 = "SELECT tariff_description FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 7;";
+    
+                        $result = mysqli_query($induction, $sql);
+                        $result2 = mysqli_query($induction, $sql2);
+    
+                        while ($tariff = mysqli_fetch_assoc($result) and $tariff_desc = mysqli_fetch_assoc($result2))
+                        {
+                            echo '<p class="tariff_name_all">'.$tariff['tariff_name'].'<p>';
+                            echo nl2br( $tariff_desc['tariff_description'] );
+                        }
+                    }
 
-                $result = mysqli_query($induction, $sql);
+                elseif($id_tariff != 0){
 
-                while ($tariff = mysqli_fetch_assoc($result))
-                {
-                    echo $tariff['tariff_description'];
+                    $result = mysqli_query($induction, $sql);
+
+                    while ($tariff = mysqli_fetch_assoc($result))
+                    {
+                        echo nl2br( $tariff['tariff_description'] );
+                    }
                 }
-            }
-            else{
-                echo "Выберите вид тарифа";
-            }
-        ?>
+                else{
+                    echo "Выберите вид тарифа";
+                }
+            ?>
+        </div>
      </div>
      <div class="modal" data-modal="12">
         <!--   Svg иконка для закрытия окна  -->
         <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg"               viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
-        <p class="modal__title">Тарифы Усть-Абаканского района</p>
-        <?php
-            include "database.php";
-        
-            if($_REQUEST['id_tariff']) {
-                foreach($_POST['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 12 AND id_tariff = $id_tariff";
-                }}
+        <div class="combo-title">
+            <p class="modal__title">Усть-Абаканский район</p> 
+            <p class="modal__title tariff__title"></p>
+        </div>
+        <div class = "modal__text">
+            <?php
+                include "database.php";
+            
+                if($_REQUEST['id_tariff']) {
+                    foreach($_GET['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 12 AND id_tariff = $id_tariff";
+                    }}
 
-            if($id_tariff != 0){
+                    if($id_tariff == $id)
+                    {
+                        $sql = "SELECT tariff_name FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 12;";
+                        
+                        $sql2 = "SELECT tariff_description FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 12;";
+    
+                        $result = mysqli_query($induction, $sql);
+                        $result2 = mysqli_query($induction, $sql2);
+    
+                        while ($tariff = mysqli_fetch_assoc($result) and $tariff_desc = mysqli_fetch_assoc($result2))
+                        {
+                            echo '<p class="tariff_name_all">'.$tariff['tariff_name'].'<p>';
+                            echo nl2br( $tariff_desc['tariff_description'] );
+                        }
+                    }
 
-                $result = mysqli_query($induction, $sql);
+                elseif($id_tariff != 0){
 
-                while ($tariff = mysqli_fetch_assoc($result))
-                {
-                    echo $tariff['tariff_description'];
+                    $result = mysqli_query($induction, $sql);
+
+                    while ($tariff = mysqli_fetch_assoc($result))
+                    {
+                        echo nl2br( $tariff['tariff_description'] );
+                    }
                 }
-            }
-            else{
-                echo "Выберите вид тарифа";
-            }
-        ?>
+                else{
+                    echo "Выберите вид тарифа";
+                }
+            ?>
+        </div>
      </div>
      <div class="modal" data-modal="6">
         <!--   Svg иконка для закрытия окна  -->
         <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg"               viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
-        <p class="modal__title">Тарифы Алтайского района</p>
-        <?php
-            include "database.php";
-        
-            if($_REQUEST['id_tariff']) {
-                foreach($_POST['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 6 AND id_tariff = $id_tariff";
-                }}
+        <div class="combo-title">
+            <p class="modal__title">Алтайский район</p> 
+            <p class="modal__title tariff__title"></p>
+        </div>
+        <div class = "modal__text">
+            <?php
+                include "database.php";
+            
+                if($_REQUEST['id_tariff']) {
+                    foreach($_GET['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 6 AND id_tariff = $id_tariff";
+                    }}
+                    if($id_tariff == $id)
+                    {
+                        $sql = "SELECT tariff_name FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 6;";
+                        
+                        $sql2 = "SELECT tariff_description FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 6;";
+    
+                        $result = mysqli_query($induction, $sql);
+                        $result2 = mysqli_query($induction, $sql2);
+    
+                        while ($tariff = mysqli_fetch_assoc($result) and $tariff_desc = mysqli_fetch_assoc($result2))
+                        {
+                            echo '<p class="tariff_name_all">'.$tariff['tariff_name'].'<p>';
+                            echo nl2br( $tariff_desc['tariff_description'] );
+                        }
+                    }
 
-            if($id_tariff != 0){
+                elseif($id_tariff != 0){
 
-                $result = mysqli_query($induction, $sql);
+                    $result = mysqli_query($induction, $sql);
 
-                while ($tariff = mysqli_fetch_assoc($result))
-                {
-                    echo $tariff['tariff_description'];
+                    while ($tariff = mysqli_fetch_assoc($result))
+                    {
+                        echo nl2br( $tariff['tariff_description'] );
+                    }
                 }
-            }
-            else{
-                echo "Выберите вид тарифа";
-            }
-        ?>
+                else{
+                    echo "Выберите вид тарифа";
+                }
+            ?>
+        </div>
      </div>
      <div class="modal" data-modal="9">
         <!--   Svg иконка для закрытия окна  -->
         <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg"               viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
-        <p class="modal__title">Тарифы Боградского района</p>
-        <?php
-            include "database.php";
+        <div class="combo-title">
+            <p class="modal__title">Боградский район</p> 
+            <p class="modal__title tariff__title"></p>
+        </div>
+        <div class = "modal__text">
+                <?php
+                    include "database.php";
+                
+                    if($_REQUEST['id_tariff']) {
+                        foreach($_GET['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 9 AND id_tariff = $id_tariff";
+                        }}
+
+                        if($id_tariff == $id)
+                        {
+                            $sql = "SELECT tariff_name FROM tariff 
+                            INNER JOIN svyaz
+                            ON svyaz.id_tariff = tariff.id
+                            and svyaz.id_locality = 9;";
+                            
+                            $sql2 = "SELECT tariff_description FROM tariff 
+                            INNER JOIN svyaz
+                            ON svyaz.id_tariff = tariff.id
+                            and svyaz.id_locality = 9;";
         
-            if($_REQUEST['id_tariff']) {
-                foreach($_POST['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 9 AND id_tariff = $id_tariff";
-                }}
+                            $result = mysqli_query($induction, $sql);
+                            $result2 = mysqli_query($induction, $sql2);
+        
+                            while ($tariff = mysqli_fetch_assoc($result) and $tariff_desc = mysqli_fetch_assoc($result2))
+                            {
+                                echo '<p class="tariff_name_all">'.$tariff['tariff_name'].'<p>';
+                                echo nl2br( $tariff_desc['tariff_description'] );
+                            }
+                        }
 
-            if($id_tariff != 0){
+                    elseif($id_tariff != 0){
 
-                $result = mysqli_query($induction, $sql);
+                        $result = mysqli_query($induction, $sql);
 
-                while ($tariff = mysqli_fetch_assoc($result))
-                {
-                    echo $tariff['tariff_description'];
-                }
-            }
-            else{
-                echo "Выберите вид тарифа";
-            }
-        ?>
+                        while ($tariff = mysqli_fetch_assoc($result))
+                        {
+                            echo nl2br( $tariff['tariff_description'] );
+                        }
+                    }
+                    else{
+                        echo "Выберите вид тарифа";
+                    }
+                ?>
+        </div>
      </div>
      <div class="modal" data-modal="13">
         <!--   Svg иконка для закрытия окна  -->
         <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg"               viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
-        <p class="modal__title">Тарифы Ширинского района</p>
-        <?php
-            include "database.php";
-        
-            if($_REQUEST['id_tariff']) {
-                foreach($_POST['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 13 AND id_tariff = $id_tariff";
-                }}
+        <div class="combo-title">
+            <p class="modal__title">Ширинский район</p> 
+            <p class="modal__title tariff__title"></p>
+        </div>
+        <div class = "modal__text">
+            <?php
+                include "database.php";
+            
+                if($_REQUEST['id_tariff']) {
+                    foreach($_GET['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 13 AND id_tariff = $id_tariff";
+                    }}
 
-            if($id_tariff != 0){
+                    if($id_tariff == $id)
+                    {
+                        $sql = "SELECT tariff_name FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 13;";
+                        
+                        $sql2 = "SELECT tariff_description FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 13;";
+    
+                        $result = mysqli_query($induction, $sql);
+                        $result2 = mysqli_query($induction, $sql2);
+    
+                        while ($tariff = mysqli_fetch_assoc($result) and $tariff_desc = mysqli_fetch_assoc($result2))
+                        {
+                            echo '<p class="tariff_name_all">'.$tariff['tariff_name'].'<p>';
+                            echo nl2br( $tariff_desc['tariff_description'] );
+                        }
+                    }
 
-                $result = mysqli_query($induction, $sql);
+                elseif($id_tariff != 0){
 
-                while ($tariff = mysqli_fetch_assoc($result))
-                {
-                    echo $tariff['tariff_description'];
+                    $result = mysqli_query($induction, $sql);
+
+                    while ($tariff = mysqli_fetch_assoc($result))
+                    {
+                        echo nl2br( $tariff['tariff_description'] );
+                    }
                 }
-            }
-            else{
-                echo "Выберите вид тарифа";
-            }
-        ?>
+                else{
+                    echo "Выберите вид тарифа";
+                }
+            ?>
+        </div>
      </div>
      <div class="modal" data-modal="10">
         <!--   Svg иконка для закрытия окна  -->
         <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg"               viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
-        <p class="modal__title">Тарифы Ордоникидзевского района</p>
-        <?php
-            include "database.php";
-        
-            if($_REQUEST['id_tariff']) {
-                foreach($_POST['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 10 AND id_tariff = $id_tariff";
-                }}
+        <div class="combo-title">
+            <p class="modal__title">Орджоникидзевский район</p> 
+            <p class="modal__title tariff__title"></p>
+        </div>
+        <div class = "modal__text">
+            <?php
+                include "database.php";
+            
+                if($_REQUEST['id_tariff']) {
+                    foreach($_GET['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 10 AND id_tariff = $id_tariff";
+                    }}
 
-            if($id_tariff != 0){
+                    if($id_tariff == $id)
+                    {
+                        $sql = "SELECT tariff_name FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 10;";
+                        
+                        $sql2 = "SELECT tariff_description FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 10;";
+    
+                        $result = mysqli_query($induction, $sql);
+                        $result2 = mysqli_query($induction, $sql2);
+    
+                        while ($tariff = mysqli_fetch_assoc($result) and $tariff_desc = mysqli_fetch_assoc($result2))
+                        {
+                            echo '<p class="tariff_name_all">'.$tariff['tariff_name'].'<p>';
+                            echo nl2br( $tariff_desc['tariff_description'] );
+                        }
+                    }
 
-                $result = mysqli_query($induction, $sql);
+                elseif($id_tariff != 0){
 
-                while ($tariff = mysqli_fetch_assoc($result))
-                {
-                    echo $tariff['tariff_description'];
+                    $result = mysqli_query($induction, $sql);
+
+                    while ($tariff = mysqli_fetch_assoc($result))
+                    {
+                        echo nl2br( $tariff['tariff_description'] );
+                    }
                 }
-            }
-            else{
-                echo "Выберите вид тарифа";
-            }
-        ?>
+                else{
+                    echo "Выберите вид тарифа";
+                }
+            ?>
+        </div>
      </div>
      <div class="modal" data-modal="1">
         <!--   Svg иконка для закрытия окна  -->
         <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg"               viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
-        <p class="modal__title">Тарифы г.Абакана</p>
-        <?php
-            include "database.php";
-        
-            if($_REQUEST['id_tariff']) {
-                foreach($_POST['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 1 AND id_tariff = $id_tariff";
-                }}
+        <div class="combo-title">
+            <p class="modal__title">г. Абакан</p> 
+            <p class="modal__title tariff__title"></p>
+        </div>
+        <div class = "modal__text">
+            <?php
+                include "database.php";
+            
+                if($_REQUEST['id_tariff']) {
+                    foreach($_GET['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 1 AND id_tariff = $id_tariff";
+                    }}
 
-            if($id_tariff != 0){
+                    if($id_tariff == $id)
+                    {
+                        $sql = "SELECT tariff_name FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 1;";
+                        
+                        $sql2 = "SELECT tariff_description FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 1;";
+    
+                        $result = mysqli_query($induction, $sql);
+                        $result2 = mysqli_query($induction, $sql2);
+    
+                        while ($tariff = mysqli_fetch_assoc($result) and $tariff_desc = mysqli_fetch_assoc($result2))
+                        {
+                            echo '<p class="tariff_name_all">'.$tariff['tariff_name'].'<p>';
+                            echo nl2br( $tariff_desc['tariff_description'] );
+                        }
+                    }
 
-                $result = mysqli_query($induction, $sql);
+                elseif($id_tariff != 0){
 
-                while ($tariff = mysqli_fetch_assoc($result))
-                {
-                    echo $tariff['tariff_description'];
+                    $result = mysqli_query($induction, $sql);
+
+                    while ($tariff = mysqli_fetch_assoc($result))
+                    {
+                        echo nl2br( $tariff['tariff_description'] );
+                    }
                 }
-            }
-            else{
-                echo "Выберите вид тарифа";
-            }
-        ?>
+                else{
+                    echo "Выберите вид тарифа";
+                }
+            ?>
+        </div>
      </div>
      <div class="modal" data-modal="2">
         <!--   Svg иконка для закрытия окна  -->
         <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg"               viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
-        <p class="modal__title">Тарифы г.Черногорска</p>
-        <?php
-            include "database.php";
-        
-            if($_REQUEST['id_tariff']) {
-                foreach($_POST['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 2 AND id_tariff = $id_tariff";
-                }}
+        <div class="combo-title">
+            <p class="modal__title">г. Черногорск</p> 
+            <p class="modal__title tariff__title"></p>
+        </div>
+        <div class = "modal__text">
+            <?php
+                include "database.php";
+            
+                if($_REQUEST['id_tariff']) {
+                    foreach($_GET['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 2 AND id_tariff = $id_tariff";
+                    }}
+                    if($id_tariff == $id)
+                    {
+                        $sql = "SELECT tariff_name FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 2;";
+                        
+                        $sql2 = "SELECT tariff_description FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 2;";
+    
+                        $result = mysqli_query($induction, $sql);
+                        $result2 = mysqli_query($induction, $sql2);
+    
+                        while ($tariff = mysqli_fetch_assoc($result) and $tariff_desc = mysqli_fetch_assoc($result2))
+                        {
+                            echo '<p class="tariff_name_all">'.$tariff['tariff_name'].'<p>';
+                            echo nl2br( $tariff_desc['tariff_description'] );
+                        }
+                    }
 
-            if($id_tariff != 0){
+                elseif($id_tariff != 0){
 
-                $result = mysqli_query($induction, $sql);
+                    $result = mysqli_query($induction, $sql);
 
-                while ($tariff = mysqli_fetch_assoc($result))
-                {
-                    echo $tariff['tariff_description'];
+                    while ($tariff = mysqli_fetch_assoc($result))
+                    {
+                        echo nl2br( $tariff['tariff_description'] );
+                    }
                 }
-            }
-            else{
-                echo "Выберите вид тарифа";
-            }
-        ?>
+                else{
+                    echo "Выберите вид тарифа";
+                }
+            ?>
+        </div>
      </div>
      <div class="modal" data-modal="3">
         <!--   Svg иконка для закрытия окна  -->
         <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg"               viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
-        <p class="modal__title">Тарифы г.Абазы</p>
-        <?php
-            include "database.php";
-        
-            if($_REQUEST['id_tariff']) {
-                foreach($_POST['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 3 AND id_tariff = $id_tariff";
-                }}
+        <div class="combo-title">
+            <p class="modal__title">г. Абаза</p> 
+            <p class="modal__title tariff__title"></p>
+        </div>
+        <div class = "modal__text">
+            <?php
+                include "database.php";
+            
+                if($_REQUEST['id_tariff']) {
+                    foreach($_GET['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 3 AND id_tariff = $id_tariff";
+                    }}
 
-            if($id_tariff != 0){
+                    if($id_tariff == $id)
+                    {
+                        $sql = "SELECT tariff_name FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 3;";
+                        
+                        $sql2 = "SELECT tariff_description FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 3;";
+    
+                        $result = mysqli_query($induction, $sql);
+                        $result2 = mysqli_query($induction, $sql2);
+    
+                        while ($tariff = mysqli_fetch_assoc($result) and $tariff_desc = mysqli_fetch_assoc($result2))
+                        {
+                            echo '<p class="tariff_name_all">'.$tariff['tariff_name'].'<p>';
+                            echo nl2br( $tariff_desc['tariff_description'] );
+                        }
+                    }
 
-                $result = mysqli_query($induction, $sql);
+                elseif($id_tariff != 0){
 
-                while ($tariff = mysqli_fetch_assoc($result))
-                {
-                    echo $tariff['tariff_description'];
+                    $result = mysqli_query($induction, $sql);
+
+                    while ($tariff = mysqli_fetch_assoc($result))
+                    {
+                        echo nl2br( $tariff['tariff_description'] );
+                    }
                 }
-            }
-            else{
-                echo "Выберите вид тарифа";
-            }
-        ?>
+                else{
+                    echo "Выберите вид тарифа";
+                }
+            ?>
+        </div>
      </div>
      <div class="modal" data-modal="4">
         <!--   Svg иконка для закрытия окна  -->
         <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg"               viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
-        <p class="modal__title">Тарифы г.Саяногорска</p>
-        <?php
-            include "database.php";
-        
-            if($_REQUEST['id_tariff']) {
-                foreach($_POST['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 4 AND id_tariff = $id_tariff";
-                }}
+        <div class="combo-title">
+            <p class="modal__title">г. Саяногорск</p> 
+            <p class="modal__title tariff__title"></p>
+        </div>
+        <div class = "modal__text">
+            <?php
+                include "database.php";
+            
+                if($_REQUEST['id_tariff']) {
+                    foreach($_GET['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 4 AND id_tariff = $id_tariff";
+                    }}
 
-            if($id_tariff != 0){
+                    if($id_tariff == $id)
+                    {
+                        $sql = "SELECT tariff_name FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 4;";
+                        
+                        $sql2 = "SELECT tariff_description FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 4;";
+    
+                        $result = mysqli_query($induction, $sql);
+                        $result2 = mysqli_query($induction, $sql2);
+    
+                        while ($tariff = mysqli_fetch_assoc($result) and $tariff_desc = mysqli_fetch_assoc($result2))
+                        {
+                            echo '<p class="tariff_name_all">'.$tariff['tariff_name'].'<p>';
+                            echo nl2br( $tariff_desc['tariff_description'] );
+                        }
+                    }
 
-                $result = mysqli_query($induction, $sql);
+                elseif($id_tariff != 0){
 
-                while ($tariff = mysqli_fetch_assoc($result))
-                {
-                    echo $tariff['tariff_description'];
+                    $result = mysqli_query($induction, $sql);
+
+                    while ($tariff = mysqli_fetch_assoc($result))
+                    {
+                        echo nl2br( $tariff['tariff_description'] );
+                    }
                 }
-            }
-            else{
-                echo "Выберите вид тарифа";
-            }
-        ?>
+                else{
+                    echo "Выберите вид тарифа";
+                }
+            ?>
+        </div>
      </div>
      
      <div class="modal" data-modal="5">
         <!--   Svg иконка для закрытия окна  -->
         <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg"               viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
-        <p class="modal__title">Тарифы г.Сорска</p>
-        <?php
-            include "database.php";
-        
-            if($_REQUEST['id_tariff']) {
-                foreach($_POST['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 5 AND id_tariff = $id_tariff";
-                }}
+        <div class="combo-title">
+            <p class="modal__title">г. Сорск</p> 
+            <p class="modal__title tariff__title"></p>
+        </div>
+        <div class = "modal__text">
+            <?php
+                include "database.php";
+            
+                if($_REQUEST['id_tariff']) {
+                    foreach($_GET['id_tariff'] as $id_tariff){$sql = "SELECT tariff_description FROM `svyaz` WHERE id_locality = 5 AND id_tariff = $id_tariff";
+                    }}
 
-            if($id_tariff != 0){
+                    if($id_tariff == $id)
+                    {
+                        $sql = "SELECT tariff_name FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 5;";
+                        
+                        $sql2 = "SELECT tariff_description FROM tariff 
+                        INNER JOIN svyaz
+                        ON svyaz.id_tariff = tariff.id
+                        and svyaz.id_locality = 5;";
+    
+                        $result = mysqli_query($induction, $sql);
+                        $result2 = mysqli_query($induction, $sql2);
+    
+                        while ($tariff = mysqli_fetch_assoc($result) and $tariff_desc = mysqli_fetch_assoc($result2))
+                        {
+                            echo '<p class="tariff_name_all">'.$tariff['tariff_name'].'<p>';
+                            echo nl2br( $tariff_desc['tariff_description'] );
+                        }
+                    }
 
-                $result = mysqli_query($induction, $sql);
+                elseif($id_tariff != 0){
 
-                while ($tariff = mysqli_fetch_assoc($result))
-                {
-                    echo $tariff['tariff_description'];
+                    $result = mysqli_query($induction, $sql);
+
+                    while ($tariff = mysqli_fetch_assoc($result))
+                    {
+                        echo nl2br( $tariff['tariff_description'] );
+                    }
                 }
-            }
-            else{
-                echo "Выберите вид тарифа";
-            }
-        ?>
+                else{
+                    echo "Выберите вид тарифа";
+                }
+            ?>
+        </div>
      </div>
      <!-- Подложка под модальным окном -->
      <div class="overlay js-overlay-modal"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        var sel = document.getElementById("test");
+        var text= ": " + sel.options[sel.selectedIndex].text;
+        var elements = document.getElementsByClassName('tariff__title');
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].innerText = text.toLowerCase();
+        }
+        sessionStorage.clear();
+    </script>
 </body>
 </html>
 

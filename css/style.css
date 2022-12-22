@@ -1,7 +1,14 @@
 .map {
     position: absolute;
     text-align: center;
-    right: 711px;
+    right: 304px;
+    top: 180px;
+}
+.mapad {
+    position: absolute;
+    text-align: center;
+    right: 304px;
+    top: 180px;
 }
 svg
 {
@@ -14,7 +21,6 @@ svg
 path
 {
     opacity: 0.4;
-    fill: gray;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -31,7 +37,11 @@ path
     border: 1px solid #900;
 }
 
-.overlay {
+.tariff_name_all{
+    font-weight: bold;
+}
+
+/*.overlay {
    
    opacity: 0;
    visibility: hidden;
@@ -43,34 +53,43 @@ path
    background-color: rgba(0, 0, 0, .5);
    z-index: 20;
    transition: .3s all;
-}
+}*/
 
 .modal {
-   
-   opacity: 0;
-   visibility: hidden;
-   height: 600px;
-   width: 100%;
-   max-width: 1000px;
-   
-   position: fixed;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   z-index: 30; 
-   
-   box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2); 
-   text-align: center;
-   padding: 30px;
-   border-radius: 3px;
-   background-color: #fff;
-   transition: 0.3s all;
+    opacity: 0;
+    visibility: hidden;
+    height: 630px;
+    width: 673px;
+    position: fixed;
+    top: 231px;
+    left: 242px;
+    text-align: center;
+    padding: 30px;
+    border-radius: 3px;
+    background-color: #fff;
+    overflow-y: auto;
+}
+.modalad {
+    opacity: 0;
+    visibility: hidden;
+    height: 630px;
+    width: 718px;
+    position: fixed;
+    top: 231px;
+    left: 242px;
+    text-align: center;
+    padding: 30px;
+    border-radius: 3px;
+    background-color: #fff;
+    overflow-y: auto;
 }
 
 .modal.active,
 .overlay.active{
    opacity: 1;
    visibility: visible;
+   overflow: auto;
+   overflow-x:hidden;
 }
 
 .modal__cross {
@@ -78,7 +97,7 @@ path
    height: 15px;
    position: absolute;
    top: 14px;
-   left: 1030px;
+   left: 1025px;
    fill: #444;
    cursor: pointer;
 }
@@ -98,24 +117,346 @@ label {
     font-size: 1rem;
     padding-right: 10px;
 }
+.items label:hover
+{
+  background: #eee;
+  cursor: pointer;
+}
 
 select {
-    font-size: .9rem;
+    font-size: 14px;
     padding: 2px 5px;
+    height: 40px;
 }
 
 .select_block {
     position: absolute;
-    right: 1174px;
-    top: 220px;
-}
-
-.btn{
-    float: right;
+    right: 53px;
+    top: 232px;
 }
 
 .btn-login{
     position: absolute;
     top: 8px;
     left: 1766px;
+}
+.input_change{
+    width: 580px;
+    height: 520px;
+    text-align:left;
+    resize: none;
+    font-size: 20px;
+}
+.modal__title{
+    padding-bottom: 10px;
+    font-size: 30px;
+    margin-top: -18px;
+    margin-bottom: -4px;
+}
+.modal__text{
+    font-size: 20px;
+}
+.ad{
+    position: absolute;
+    top: 90px;
+    left: 854px;
+}
+.combo-title{
+    display: flex;
+    justify-content: center;
+}
+.goskom{
+    float: left;
+    width: 300px;
+    pointer-events:none;
+}
+.goskom2{
+    margin-right: 70px;
+}
+.logo{
+    position: absolute;
+    top: -133px;
+    left: 842px;
+}
+h1{
+    font-size: 37px;
+}
+circle{
+    transition: 1s; /* Время эффекта */
+}
+circle:hover{
+    stroke-width: 8;
+}
+label, h1, form, a, .modal, p{
+    font-family: 'PT Sans', sans-serif;
+}
+label{
+    font-size: 17px;
+}
+.select_block{
+    text-align: center;
+}
+.title{
+    font-family: 'PT Sans', sans-serif;
+    font-weight: bolder;
+}
+#tariff-select{
+    margin-top: 13px;
+}
+.title-change{
+    height: 110px;
+    width: 741px;
+}
+.title-change-close{
+    left: 778px;
+    top: 191px;
+}
+.title-change-inp{
+    width: 452px;
+}
+.title_change_block {
+    position: absolute;
+    top: 254px;
+    left: 20px;
+    text-align: center;
+}
+.add_tariff{
+    position: absolute;
+    top: 400px;
+    left: 20px;
+    text-align: center;
+}
+.delete_tariff{
+    position: absolute;
+    top: 544px;
+    left: 122px;
+}
+.color-block{
+    display: flex;
+}
+.color-and-title{
+    position: absolute;
+    top: 632px;
+    left: 53px;
+    text-align: center;
+}
+.x{
+    fill: black;
+}
+
+.btn {
+    box-sizing: border-box;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    background-color: transparent;
+    border: 2px solid #e74c3c;
+    border-radius: 0.6em;
+    color: #e74c3c;
+    cursor: pointer;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-self: center;
+        -ms-flex-item-align: center;
+            align-self: center;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    margin-left: 160px;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+  .btn:hover, .btn:focus {
+    color: #fff;
+    outline: 0;
+  }
+.fifth {
+    border-color: #c5b0b0;
+    border-radius: 0;
+    color: #ab7e9f;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    -webkit-transition: color 150ms ease-in-out;
+    transition: color 150ms ease-in-out;
+    font-family: 'PT Sans', sans-serif;
+  }
+  .fifth:after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    width: 0;
+    height: 100%;
+    background: #555;
+    z-index: -1;
+    -webkit-transition: width 150ms ease-in-out;
+    transition: width 150ms ease-in-out;
+  }
+  .fifth:hover {
+    color: #fff;
+  }
+  .fifth:hover:after {
+    width: 110%;
+  }    
+  input[type=text] {
+    width: 480px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+  }
+  
+  input[type=text]:focus {
+    border: 3px solid #555;
+  }
+  .btnoth{
+      float: right;
+      margin-top: 127px;
+  }
+  .del_select_block{
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+  }
+  .deltarbtn2{
+    position: absolute;
+    top: 42px;
+    left: 70px;
+  }
+  .modalbtn{
+    margin-left: 271px;
+  }
+.title-red{
+    margin-left: 550px;
+    color: red;
+}
+.logo2{
+    position: absolute;
+    top: -155px;
+    left: 408px;
+    pointer-events: none;
+}
+.select_blockad{
+    position: absolute;
+    top: 740px;
+    left: 124px;
+    text-align: center;
+}
+.modalad{
+    position: absolute;
+    left: 624px;
+    border-style: none;
+    border-width: 0px;
+}
+.mapad{
+    position: absolute;
+    text-align: center;
+    right: 18px;
+    top: 192px;
+}
+.logo2ad{
+    position: absolute;
+    top: -167px;
+    left: 109px;
+    pointer-events: none;
+}
+.asd{
+    width: 1000px;
+}
+.btnothad{
+    margin-right: 22px;
+    margin-top: -5px;
+}
+.menu{
+    width: 511px;
+    height: 690px;
+    border-style: solid;
+    border-radius: 51px;
+    margin-top: 60px;
+    border-color: gray;
+}
+@media (max-width: 1754px){
+    .tt{
+        width: 1205px;
+        text-align: center;
+        margin-left: -130px;
+    }
+    .ttad{
+        width: 1250px;
+        text-align: center;
+    }
+    .modalad{
+        width: 480px;
+        left: 626px;
+        height: 683px;
+    }
+    .input_change{
+        width: 460px;
+    }
+    .modalbtn {
+        margin-left: 189px;
+    }
+    .title-red {
+        color: red;
+        text-align: start;
+        margin-left: 440px;
+    }
+    .modal{
+        width: 490px;
+        margin-left: -100px;
+    }
+    .mapad{
+        top: 234px;
+    }
+    .logo2ad{
+        top: -209px;
+        left: 109px;
+    }
+    .btnothad{
+        margin-top: -44px;
+    }
+    .combo-title {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+}
+@media (max-width: 1458px){
+    .ttad{
+        width: 1100px;
+    }
+    .modal{
+        width: 350px;
+    }
+    .tt{
+        width: 1075px;
+    }
+    .modalad{
+        width: 330px;
+        left: 626px;
+        height: 683px;
+    }
+    .input_change{
+        width: 340px;
+    }
+    .modalbtn {
+        margin-left: 108px;
+    }
+    .combo-title {
+        display: flex;
+        flex-direction: column;
+    }
 }
